@@ -22,8 +22,18 @@ const readfile = async (path) => {
     personArray.push(object);
   });
 
+  let foundP = false;
+  let resultArray = [];
   personArray.forEach((row) => {
-    console.log(row[0]);
+    let result = [];
+    if (row[0] === "P" && foundP) {
+      foundP = false;
+    }
+    if (row[0] !== "P" && foundP) {
+    }
+    if (row[0] === "P" && !foundP) {
+      foundP = true;
+    }
   });
 
   // console.log(personArray);
