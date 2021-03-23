@@ -13,32 +13,37 @@ const readfile = async (path) => {
   removeRAndSplitLines.forEach((line) => {
     linesSplitted.push(line.split(/\|/));
   });
-  let personArray = [];
-  linesSplitted.forEach((row) => {
-    let object = {};
+  let personsArray = [];
+  linesSplitted.forEach((row, index) => {
+    let array = [];
     row.forEach((line, index) => {
-      object[index] = line;
+      let test = array.push(line);
     });
-    personArray.push(object);
+    personsArray[index] = array;
   });
 
   let foundP = false;
-  let resultArray = [];
-  personArray.forEach((row) => {
-    let result = [];
-    if (row[0] === "P" && foundP) {
-      foundP = false;
-    }
+  let people = [];
+  // personsObject.forEach((row) => {
+  //   let person = {};
+  //   if (row[0] === "P" && foundP) {
+  //     foundP = false;
+  //     people.push(person);
+  //   }
 
-    if (row[0] !== "P" && foundP) {
-    }
+  //   if (row[0] !== "P" && foundP) {
+  //     if (row[0] === "T") person.phonenumber = row;
+  //     if (row[0] === "A") person.adress = row;
+  //     if (row[0] === "F") person.family = row;
+  //   }
 
-    if (row[0] === "P" && !foundP) {
-      foundP = true;
-    }
-  });
+  //   if (row[0] === "P" && !foundP) {
+  //     foundP = true;
+  //     person.name = row;
+  //   }
+  // });
 
-  // console.log(personArray);
+  console.log(personsArray);
 };
 
 readfile("../file-to-convert/plaintext.txt");
