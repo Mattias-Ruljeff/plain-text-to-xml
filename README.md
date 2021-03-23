@@ -6,6 +6,7 @@ P|förnamn|efternamn
 T|mobilnummer|fastnätsnummer
 A|gata|stad|postnummer
 F|namn|födelseår
+
 P kan följas av T, A och F
 F kan följas av T och A
 

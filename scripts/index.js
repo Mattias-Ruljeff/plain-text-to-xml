@@ -7,15 +7,26 @@ const readfile = async (path) => {
     }
     test = data;
   });
-  const test2 = test.replace(/\r/g, "");
-  const test3 = test2.split(/\n/);
-  let test4;
+  const removeRAndSplitLines = test.replace(/\r/g, "").split(/\n/);
 
-  console.log(test3);
+  let linesSplitted = [];
+  removeRAndSplitLines.forEach((line) => {
+    linesSplitted.push(line.split(/\|/));
+  });
+  let personArray = [];
+  linesSplitted.forEach((row) => {
+    let object = {};
+    row.forEach((line, index) => {
+      object[index] = line;
+    });
+    personArray.push(object);
+  });
+
+  personArray.forEach((row) => {
+    console.log(row[0]);
+  });
+
+  // console.log(personArray);
 };
 
 readfile("../file-to-convert/plaintext.txt");
-
-// const wrapper = document.querySelector("#wrapper");
-
-// console.log(wrapper);
