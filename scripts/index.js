@@ -29,8 +29,10 @@ const readfile = async (path) => {
     if (row[0] === "P" && foundP) {
       foundP = false;
     }
+
     if (row[0] !== "P" && foundP) {
     }
+
     if (row[0] === "P" && !foundP) {
       foundP = true;
     }
