@@ -23,7 +23,6 @@ const readfile = async (path) => {
     });
     rowsOfInformation[index] = array;
   });
-  console.log(rowsOfInformation);
 
   // Creating person objects.
   let foundP = false;
@@ -36,7 +35,7 @@ const readfile = async (path) => {
   };
 
   // Filtering content in the rows of information, adding the information to the person-object
-  rowsOfInformation.forEach((row) => {
+  rowsOfInformation.forEach((row, index) => {
     if (row[0] === "P" && foundP) {
       foundP = false;
       listOfPeopleObjects.push(person);
@@ -83,6 +82,16 @@ const readfile = async (path) => {
       }
     }
 
+    if (rowsOfInformation.length - 1 === index) {
+      foundP = false;
+      listOfPeopleObjects.push(person);
+      person = {
+        name: [],
+        phonenumber: [],
+        adress: [],
+        family: [],
+      };
+    }
     // console.log(person, "Person");
   });
 
