@@ -59,13 +59,6 @@ const readfile = async (path) => {
 
     // Filtering content in the rows of information, adding the information to the person-object
     rowsOfInformation.forEach((row, index) => {
-        // console.log(familyPerson, "familjeperson början");
-        // console.log(
-        //   foundPerson,
-        //   "foundperson",
-        //   foundFamilyMember,
-        //   "foundfamilymember"
-        // );
         if (row[0] === "P" && foundPerson && !foundFamilyMember) {
             foundPerson = false;
             foundFamilyMember = false;
@@ -78,9 +71,7 @@ const readfile = async (path) => {
         if (row[0] === "P" && foundPerson && foundFamilyMember) {
             foundPerson = false;
             foundFamilyMember = false;
-            console.log(person.family, "familjen före");
             person.family.push(familyPerson);
-            console.log(person.family, "familjen");
 
             listOfPeopleObjects.push(person);
 
@@ -161,8 +152,6 @@ const readfile = async (path) => {
                 }
             }
         }
-        // console.log(person, "Person");
-        // console.log(familyPerson, "familjeperson slutet");
 
         if (rowsOfInformation.length - 1 === index) {
             if (foundFamilyMember) {
@@ -179,7 +168,7 @@ const readfile = async (path) => {
 
     listOfPeopleObjects.forEach((element) => {
         console.log(element, "person");
-        console.log(...element.family, "Familj");
+        // console.log(...element.family, "Familj");
     });
 };
 
