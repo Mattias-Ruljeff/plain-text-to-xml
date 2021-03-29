@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/Mattias-Ruljeff/plain-text-to-xml/issues"
   },
-  "homepage": "https://github.com/Mattias-Ruljeff/plain-text-to-xml#readme"
+  "homepage": "https://github.com/Mattias-Ruljeff/plain-text-to-xml#readme",
+  "dependencies": {}
 }
