@@ -64,7 +64,7 @@ const readfile = async (path) => {
             foundFamilyMember = false;
             listOfPeopleObjects.push(person);
 
-            emptyPersonInfo;
+            emptyPersonInfo();
             emptyFamilyPersonInfo();
         }
 
@@ -165,11 +165,46 @@ const readfile = async (path) => {
             emptyPersonInfo();
         }
     });
+    let returnString = "";
 
-    listOfPeopleObjects.forEach((element) => {
-        console.log(element, "person");
-        // console.log(...element.family, "Familj");
+    listOfPeopleObjects.forEach((person) => {
+        returnString += createXML(person);
     });
+
+    fs.writeFile("Persons in XML", returnString, "UTF-8", () => {
+        console.log("Saved");
+    });
+    // returnArray.forEach((xmlPerson) => {
+    //     console.log(xmlPerson);
+    // });
+};
+
+const createXML = (person) => {
+    return `
+<people>
+<person>
+    <firstname>${person.name[0]}</firstname>
+    <lastname>${person.name[1]}</lastname>
+    <address>
+    ${person.adress.map((name) => `<street>${name}</street>`).join("\n")}
+    </address>
+    <phone>
+    ${person.phonenumber
+        .map((number) => `<number>${number}</number>`)
+        .join("\n")}
+    </phone>
+    <family>
+    <name>Victoria</name>
+        <born>1977</born>
+        <address>...</address>
+    </family>
+    <family>...</family>
+</person>
+<person>...</person>
+</people>
+    `;
 };
 
 readfile("../file-to-convert/plaintext.txt");
+
+// ${person.name[2] ? `<street>${person.name[2]}</street>` : ""}
