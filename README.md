@@ -23,6 +23,7 @@ A|1600 Pennsylvania Avenue|Washington, D.C
 
 Ger XML som:
 
+```
 <people>
   <person>
     <firstname>Carl Gustaf</firstname>
@@ -44,3 +45,4 @@ Ger XML som:
   </person>
   <person>...</person>
 </people>
+```

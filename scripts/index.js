@@ -13,27 +13,33 @@ const readfile = async (path) => {
   removeRAndSplitLines.forEach((line) => {
     linesSplitted.push(line.split(/\|/));
   });
-  let personsArray = [];
+
+  // Create array of information from rows.
+  let rowsOfInformation = [];
   linesSplitted.forEach((row, index) => {
     let array = [];
     row.forEach((line, index) => {
-      let test = array.push(line);
+      array.push(line);
     });
-    personsArray[index] = array;
+    rowsOfInformation[index] = array;
   });
+  console.log(rowsOfInformation);
 
+  // Creating person objects.
   let foundP = false;
-  let people = [];
+  let listOfPeopleObjects = [];
   let person = {
     name: [],
     phonenumber: [],
     adress: [],
     family: [],
   };
-  personsArray.forEach((row) => {
+
+  // Filtering content in the rows of information, adding the information to the person-object
+  rowsOfInformation.forEach((row) => {
     if (row[0] === "P" && foundP) {
       foundP = false;
-      people.push(person);
+      listOfPeopleObjects.push(person);
       person = {
         name: [],
         phonenumber: [],
@@ -41,9 +47,9 @@ const readfile = async (path) => {
         family: [],
       };
     }
+
     if (row[0] === "P" && !foundP) {
       foundP = true;
-
       row.forEach((value, index) => {
         if (index !== 0) {
           person.name = [...person.name, value];
@@ -80,7 +86,7 @@ const readfile = async (path) => {
     // console.log(person, "Person");
   });
 
-  console.log(people);
+  console.log(listOfPeopleObjects);
 };
 
 readfile("../file-to-convert/plaintext.txt");
