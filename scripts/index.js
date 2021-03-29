@@ -24,26 +24,63 @@ const readfile = async (path) => {
 
   let foundP = false;
   let people = [];
-  // personsObject.forEach((row) => {
-  //   let person = {};
-  //   if (row[0] === "P" && foundP) {
-  //     foundP = false;
-  //     people.push(person);
-  //   }
+  let person = {
+    name: [],
+    phonenumber: [],
+    adress: [],
+    family: [],
+  };
+  personsArray.forEach((row) => {
+    if (row[0] === "P" && foundP) {
+      foundP = false;
+      people.push(person);
+      person = {
+        name: [],
+        phonenumber: [],
+        adress: [],
+        family: [],
+      };
+    }
+    if (row[0] === "P" && !foundP) {
+      foundP = true;
 
-  //   if (row[0] !== "P" && foundP) {
-  //     if (row[0] === "T") person.phonenumber = row;
-  //     if (row[0] === "A") person.adress = row;
-  //     if (row[0] === "F") person.family = row;
-  //   }
+      row.forEach((value, index) => {
+        if (index !== 0) {
+          person.name = [...person.name, value];
+        }
+      });
+    }
 
-  //   if (row[0] === "P" && !foundP) {
-  //     foundP = true;
-  //     person.name = row;
-  //   }
-  // });
+    if (row[0] !== "P" && foundP) {
+      if (row[0] === "T") {
+        row.forEach((value, index) => {
+          if (index !== 0) {
+            person.phonenumber = [...person.phonenumber, value];
+          }
+        });
+      }
 
-  console.log(personsArray);
+      if (row[0] === "A") {
+        row.forEach((value, index) => {
+          if (index !== 0) {
+            person.adress = [...person.adress, value];
+          }
+        });
+      }
+
+      if (row[0] === "F") {
+        row.forEach((value, index) => {
+          if (index !== 0) {
+            person.family = [...person.family, value];
+          }
+        });
+      }
+    }
+
+    // console.log(person, "Person");
+  });
+
+  console.log(people);
 };
 
 readfile("../file-to-convert/plaintext.txt");
