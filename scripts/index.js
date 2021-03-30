@@ -30,20 +30,23 @@ const readfile = async (path) => {
     let listOfPeopleObjects = [];
 
     let person = {
-        name: [],
+        firstname: "",
+        lastname: "",
         phonenumber: [],
         adress: [],
         family: [],
     };
     let familyPerson = {
-        name: [],
+        firstname: "",
+        birth: "",
         phonenumber: [],
         address: [],
     };
 
     const emptyPersonInfo = () => {
         person = {
-            name: [],
+            firstname: "",
+            lastname: "",
             phonenumber: [],
             adress: [],
             family: [],
@@ -51,7 +54,8 @@ const readfile = async (path) => {
     };
     const emptyFamilyPersonInfo = () => {
         familyPerson = {
-            name: [],
+            firstname: "",
+            birth: "",
             phonenumber: [],
             address: [],
         };
@@ -89,8 +93,11 @@ const readfile = async (path) => {
         if (row[0] === "F" && foundPerson && !foundFamilyMember) {
             foundFamilyMember = true;
             row.forEach((value, index) => {
-                if (index !== 0) {
-                    familyPerson.name = [...familyPerson.name, value];
+                if (index === 1) {
+                    familyPerson.firstname = value;
+                }
+                if (index === 2) {
+                    familyPerson.birth = value;
                 }
             });
         }
@@ -98,8 +105,11 @@ const readfile = async (path) => {
         if (row[0] == "P" && !foundPerson && !foundFamilyMember) {
             foundPerson = true;
             row.forEach((value, index) => {
-                if (index !== 0) {
-                    person.name = [...person.name, value];
+                if (index === 1) {
+                    person.firstname = value;
+                }
+                if (index === 2) {
+                    person.lastname = value;
                 }
             });
         }
@@ -165,44 +175,66 @@ const readfile = async (path) => {
             emptyPersonInfo();
         }
     });
-    let returnString = "";
 
+    // Creating the string of persons to write in XML-file
+    let returnString = `<?xml version="1.0" encoding="UTF-8"?>`;
     listOfPeopleObjects.forEach((person) => {
         returnString += createXML(person);
     });
 
-    fs.writeFile("Persons in XML", returnString, "UTF-8", () => {
+    fs.writeFile("Persons in XML.xml", returnString, "UTF-8", () => {
         console.log("Saved");
     });
-    // returnArray.forEach((xmlPerson) => {
-    //     console.log(xmlPerson);
-    // });
 };
 
 const createXML = (person) => {
+    let family = "";
+
+    person.family.forEach((person) => {
+        let familyAdress = "";
+        person.address.forEach((adress, index) => {
+            if (index === 0) {
+                familyAdress += `<street>${adress}</street>\n`;
+            } else familyAdress += `\t\t\t\t<street>${adress}</street>\n`;
+        });
+        console.log(person, "family person name");
+        family += `<firstname>${person.firstname}</firstname>
+            <birth>${person.birth}</birth>
+            <adress>
+                ${familyAdress}
+            </adress>
+            `;
+    });
+
     return `
 <people>
-<person>
-    <firstname>${person.name[0]}</firstname>
-    <lastname>${person.name[1]}</lastname>
+    <person>
+    <firstname>${person.firstname}</firstname>
+    <lastname>${person.lastname}</lastname>
     <address>
-    ${person.adress.map((name) => `<street>${name}</street>`).join("\n")}
+        ${person.adress
+            .map((adress, index) => {
+                if (index === 0) {
+                    return `<street>${adress}</street>`;
+                } else return `\t\t<street>${adress}</street>`;
+            })
+            .join("\n")}
     </address>
     <phone>
-    ${person.phonenumber
-        .map((number) => `<number>${number}</number>`)
-        .join("\n")}
+        ${person.phonenumber
+            .map((number, index) => {
+                if (index === 0) {
+                    return `<number>${number}</number>`;
+                } else return `\t\t<number>${number}</number>`;
+            })
+            .join("\n")}
     </phone>
     <family>
-    <name>Victoria</name>
-        <born>1977</born>
-        <address>...</address>
+        ${family}
     </family>
-    <family>...</family>
-</person>
-<person>...</person>
+    </person>
 </people>
-    `;
+`;
 };
 
 readfile("../file-to-convert/plaintext.txt");
