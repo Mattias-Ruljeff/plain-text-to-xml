@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<people>
+    <person>
+    <firstname>Carl Gustaf</firstname>
+    <lastname>Bernadotte</lastname>
+    <address>
+        <street>Drottningholms slott</street>
+		<street>Stockholm</street>
+		<street>10001</street>
+    </address>
+    <phone>
+        <number>0768-101801</number>
+		<number>08-101801</number>
+    </phone>
+    <family>
+        <firstname>Victoria</firstname>
+            <birth>1977</birth>
+            <adress>
+                <street>Haga Slott</street>
+				<street>Stockholm</street>
+				<street>10002</street>
+
+            </adress>
+            <firstname>Carl Philip</firstname>
+            <birth>1979</birth>
+            <adress>
+                
+            </adress>
+            
+    </family>
+    </person>
+</people>
+
+<people>
+    <person>
+    <firstname>Barack</firstname>
+    <lastname>Obama</lastname>
+    <address>
+        <street>1600 Pennsylvania Avenue</street>
+		<street>Washington, D.C</street>
+    </address>
+    <phone>
+        
+    </phone>
+    <family>
+        
+    </family>
+    </person>
+</people>
+
+<people>
+    <person>
+    <firstname>Kalle</firstname>
+    <lastname>Anka</lastname>
+    <address>
+        <street>Sitt mansion</street>
+		<street>Ankeborg</street>
+		<street>201</street>
+    </address>
+    <phone>
+        <number>0768-001122</number>
+		<number>08-331144</number>
+    </phone>
+    <family>
+        <firstname>Knatte</firstname>
+            <birth>1999</birth>
+            <adress>
+                <street>Haga Slott</street>
+				<street>Stockholm</street>
+				<street>10002</street>
+
+            </adress>
+            <firstname>Fnatte</firstname>
+            <birth>1999</birth>
+            <adress>
+                
+            </adress>
+            
+    </family>
+    </person>
+</people>
+
+<people>
+    <person>
+    <firstname>Joakim </firstname>
+    <lastname>Von Anka</lastname>
+    <address>
+        <street>Banken</street>
+		<street>Ank-köping</street>
+    </address>
+    <phone>
+        
+    </phone>
+    <family>
+        
+    </family>
+    </person>
+</people>

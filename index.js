@@ -1,20 +1,16 @@
 const fs = require("fs");
 
-const readfile = async (path) => {
-    let test = await fs.readFileSync(path, "utf8", async (err, data) => {
-        if (err) {
-            console.error(err);
-        }
-        test = data;
-    });
-    const removeRAndSplitLines = test.replace(/\r/g, "").split(/\n/);
+const convertTextToXML = async (path) => {
+    let textFromFile = await readFile(path);
+
+    const removeRAndSplitLines = textFromFile.replace(/\r/g, "").split(/\n/);
 
     let linesSplitted = [];
     removeRAndSplitLines.forEach((line) => {
         linesSplitted.push(line.split(/\|/));
     });
 
-    // Create array of information from rows.
+    // Create an array of information from rows of information.
     let rowsOfInformation = [];
     linesSplitted.forEach((row, index) => {
         let array = [];
@@ -25,6 +21,27 @@ const readfile = async (path) => {
     });
 
     // Creating person objects.
+    const personArray = personObjectsFromArray(rowsOfInformation);
+
+    // Creating the string of persons to write in XML-file
+    let returnString = `<?xml version="1.0" encoding="UTF-8"?>`;
+    personArray.forEach((person) => {
+        returnString += createXML(person);
+    });
+
+    writeToFile(returnString);
+};
+
+const readFile = async (path) => {
+    return await fs.readFileSync(path, "utf8", async (err, data) => {
+        if (err) {
+            console.error(err);
+        }
+        result = data;
+    });
+};
+
+const personObjectsFromArray = (rowsOfInformation) => {
     let foundPerson = false;
     let foundFamilyMember = false;
     let listOfPeopleObjects = [];
@@ -175,16 +192,7 @@ const readfile = async (path) => {
             emptyPersonInfo();
         }
     });
-
-    // Creating the string of persons to write in XML-file
-    let returnString = `<?xml version="1.0" encoding="UTF-8"?>`;
-    listOfPeopleObjects.forEach((person) => {
-        returnString += createXML(person);
-    });
-
-    fs.writeFile("Persons in XML.xml", returnString, "UTF-8", () => {
-        console.log("Saved");
-    });
+    return listOfPeopleObjects;
 };
 
 const createXML = (person) => {
@@ -237,6 +245,17 @@ const createXML = (person) => {
 `;
 };
 
-readfile("../file-to-convert/plaintext.txt");
+const writeToFile = (xmlString) => {
+    fs.writeFile(
+        "./converted-file/Persons in XML.xml",
+        xmlString,
+        "UTF-8",
+        () => {
+            console.log("Saved");
+        }
+    );
+};
+
+convertTextToXML("./file-to-convert/plaintext.txt");
 
 // ${person.name[2] ? `<street>${person.name[2]}</street>` : ""}

@@ -1,3 +1,7 @@
+## Starta applikation
+
+## Uppgift
+
 Det ena systemet levererar ett radbaserat filformat medan det andra kräver XML. Du ska skriva en konverterare som bygger upp rätt XML-struktur. Använd valfritt programspråk! (dock ej C/C++/Python)
 
 Filformat:

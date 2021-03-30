@@ -1,20 +1,20 @@
 {
-  "name": "plain-text-to-xml",
-  "version": "1.0.0",
-  "description": "Converts plain txt file to xml formatted file.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Mattias-Ruljeff/plain-text-to-xml.git"
-  },
-  "author": "Mattias Ruljeff",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Mattias-Ruljeff/plain-text-to-xml/issues"
-  },
-  "homepage": "https://github.com/Mattias-Ruljeff/plain-text-to-xml#readme",
-  "dependencies": {}
+    "name": "plain-text-to-xml",
+    "version": "1.0.0",
+    "description": "Converts plain txt file to xml formatted file.",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Mattias-Ruljeff/plain-text-to-xml.git"
+    },
+    "author": "Mattias Ruljeff",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Mattias-Ruljeff/plain-text-to-xml/issues"
+    },
+    "homepage": "https://github.com/Mattias-Ruljeff/plain-text-to-xml#readme",
+    "dependencies": {}
 }
