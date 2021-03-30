@@ -14,19 +14,18 @@
     </phone>
     <family>
         <firstname>Victoria</firstname>
-            <birth>1977</birth>
-            <adress>
-                <street>Haga Slott</street>
-				<street>Stockholm</street>
-				<street>10002</street>
-
-            </adress>
-            <firstname>Carl Philip</firstname>
-            <birth>1979</birth>
-            <adress>
-                
-            </adress>
+        <birth>1977</birth>
+        <adress>
+            <street>Haga Slott</street>
+			<street>Stockholm</street>
+			<street>10002</street>
+        </adress>
+        <firstname>Carl Philip</firstname>
+        <birth>1979</birth>
+        <adress>
             
+        </adress>
+        
     </family>
     </person>
 </people>
@@ -63,19 +62,18 @@
     </phone>
     <family>
         <firstname>Knatte</firstname>
-            <birth>1999</birth>
-            <adress>
-                <street>Haga Slott</street>
-				<street>Stockholm</street>
-				<street>10002</street>
-
-            </adress>
-            <firstname>Fnatte</firstname>
-            <birth>1999</birth>
-            <adress>
-                
-            </adress>
+        <birth>1999</birth>
+        <adress>
+            <street>Haga Slott</street>
+			<street>Stockholm</street>
+			<street>10002</street>
+        </adress>
+        <firstname>Fnatte</firstname>
+        <birth>1999</birth>
+        <adress>
             
+        </adress>
+        
     </family>
     </person>
 </people>

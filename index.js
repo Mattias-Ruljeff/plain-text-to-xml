@@ -3,25 +3,15 @@ const fs = require("fs");
 const convertTextToXML = async (path) => {
     let textFromFile = await readFile(path);
 
-    const removeRAndSplitLines = textFromFile.replace(/\r/g, "").split(/\n/);
+    const removeRAndSplitLines = await textFromFile
+        .replace(/\r/g, "")
+        .split(/\n/);
 
-    let linesSplitted = [];
-    removeRAndSplitLines.forEach((line) => {
-        linesSplitted.push(line.split(/\|/));
-    });
+    const arrayOfLines = createArrayOfLines(removeRAndSplitLines);
 
-    // Create an array of information from rows of information.
-    let rowsOfInformation = [];
-    linesSplitted.forEach((row, index) => {
-        let array = [];
-        row.forEach((line, index) => {
-            array.push(line);
-        });
-        rowsOfInformation[index] = array;
-    });
+    const arrayOfInformationRows = createArrayOfInformationRows(arrayOfLines);
 
-    // Creating person objects.
-    const personArray = personObjectsFromArray(rowsOfInformation);
+    const personArray = personObjectsFromArray(arrayOfInformationRows);
 
     // Creating the string of persons to write in XML-file
     let returnString = `<?xml version="1.0" encoding="UTF-8"?>`;
@@ -39,6 +29,26 @@ const readFile = async (path) => {
         }
         result = data;
     });
+};
+
+const createArrayOfLines = (string) => {
+    let linesSplitted = [];
+    string.forEach((line) => {
+        linesSplitted.push(line.split(/\|/));
+    });
+    return linesSplitted;
+};
+
+const createArrayOfInformationRows = (array) => {
+    let rowsOfInformation = [];
+    array.forEach((row, index) => {
+        let array = [];
+        row.forEach((line, index) => {
+            array.push(line);
+        });
+        rowsOfInformation[index] = array;
+    });
+    return rowsOfInformation;
 };
 
 const personObjectsFromArray = (rowsOfInformation) => {
@@ -203,15 +213,16 @@ const createXML = (person) => {
         person.address.forEach((adress, index) => {
             if (index === 0) {
                 familyAdress += `<street>${adress}</street>\n`;
-            } else familyAdress += `\t\t\t\t<street>${adress}</street>\n`;
+            } else if (person.address.length - 1 === index) {
+                familyAdress += `\t\t\t<street>${adress}</street>`;
+            } else familyAdress += `\t\t\t<street>${adress}</street>\n`;
         });
-        console.log(person, "family person name");
         family += `<firstname>${person.firstname}</firstname>
-            <birth>${person.birth}</birth>
-            <adress>
-                ${familyAdress}
-            </adress>
-            `;
+        <birth>${person.birth}</birth>
+        <adress>
+            ${familyAdress}
+        </adress>
+        `;
     });
 
     return `
@@ -257,5 +268,3 @@ const writeToFile = (xmlString) => {
 };
 
 convertTextToXML("./file-to-convert/plaintext.txt");
-
-// ${person.name[2] ? `<street>${person.name[2]}</street>` : ""}
