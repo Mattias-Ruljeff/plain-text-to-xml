@@ -2,6 +2,8 @@
 
 Jag har har kört på node i denna uppgift!
 
+Kör "npm init -y" i terminalen.
+
 Starta programmet med "node index.js" (om du har node installerat) i terminalen (stå i root-folder "plain-text-to-xml").
 
 ## Uppgift
