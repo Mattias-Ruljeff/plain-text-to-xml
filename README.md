@@ -1,5 +1,9 @@
 ## Starta applikation
 
+Jag har har kört på node i denna uppgift!
+
+Starta programmet med "node index.js" (om du har node installerat) i terminalen (stå i root-folder "plain-text-to-xml").
+
 ## Uppgift
 
 Det ena systemet levererar ett radbaserat filformat medan det andra kräver XML. Du ska skriva en konverterare som bygger upp rätt XML-struktur. Använd valfritt programspråk! (dock ej C/C++/Python)
